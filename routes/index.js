@@ -14,11 +14,11 @@ const router = require("express").Router();
  *               type: string
  */
 router.get("/", (req, res) => {
-//   if (req.isAuthenticated()) {
-//     res.send(`Welcome, ${req.user.username || 'User'}! <a href="/auth/logout">Logout</a>`);
-//   } else {
-    res.send('Welcome to my Team 9 CSE341 - WEB SERVICES API PROJECT! <a href="/auth/github">Login with GitHub</a>');
-  });
-
+  if (req.isAuthenticated()) {
+    res.send(`Welcome, ${req.user.username || 'User'}! <a href="/auth/logout">Logout</a>`);
+  } else {
+    res.send('Welcome to CSE341 - TEAM 9 WEB SERVICES API PROJECT! <a href="/auth/github">Login with GitHub</a>');
+  };
+});
 
 module.exports = router;
