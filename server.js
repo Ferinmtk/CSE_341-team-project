@@ -8,6 +8,9 @@ const studentRoutes = require('./routes/studentRoutes');
 const session = require('express-session');
 const passport = require('passport');
 const authRoutes = require('./routes/authRoutes');
+const instructorRoutes = require('./routes/instructorRoutes');
+const libraryRoutes = require('./routes/libraryRoutes');
+const playerRoutes = require('./routes/playerRoutes');
 const routes = require('./routes/index');
 
 const port = process.env.PORT || 3000;
@@ -34,9 +37,16 @@ app.use(passport.session());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
+// app.use("/", routes);
+// app.use('/student', ensureAuthenticated, studentRoutes);
+// app.use("/auth", authRoutes);
+
 app.use("/", routes);
-app.use('/student', ensureAuthenticated, studentRoutes);
+app.use('/student', studentRoutes);
 app.use("/auth", authRoutes);
+app.use('/instructor', instructorRoutes);
+app.use('/library', libraryRoutes);
+app.use('/player', playerRoutes);
 
 
 connectDB().then(() => {

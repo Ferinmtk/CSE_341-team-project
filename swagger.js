@@ -34,6 +34,9 @@ const options = {
   apis: [
     "./routes/index.js",
     "./routes/studentRoutes.js",
+    "./routes/instructorRoutes.js",
+    "./routes/libraryRoutes.js",
+    "./routes/playerRoutes.js",
   ],
 };
 

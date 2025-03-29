@@ -5,9 +5,13 @@ const { studentValidationRules, validate } = require('../controllers/validator')
 
 /**
  * @swagger
+ * 
+ * # STUDENT MANAGEMENT ROUTES
+ * 
  * /student:
  *   get:
  *     summary: Retrieve a list of students
+ *     tags: [Students]
  *     responses:
  *       200:
  *         description: A list of students
@@ -16,7 +20,7 @@ const { studentValidationRules, validate } = require('../controllers/validator')
  *             schema:
  *               type: array
  *               items:
- *                 type: object
+ *                 $ref: '#/components/schemas/Student'
  */
 router.get('/', studentController.getStudents);
 
@@ -25,6 +29,7 @@ router.get('/', studentController.getStudents);
  * /student/{id}:
  *   get:
  *     summary: Retrieve a single student by ID
+ *     tags: [Students]
  *     parameters:
  *       - in: path
  *         name: id
@@ -38,7 +43,9 @@ router.get('/', studentController.getStudents);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
+ *               $ref: '#/components/schemas/Student'
+ *       404:
+ *         description: Student not found
  */
 router.get('/:id', studentValidationRules(), validate, studentController.getStudentById);
 
@@ -47,34 +54,22 @@ router.get('/:id', studentValidationRules(), validate, studentController.getStud
  * /student:
  *   post:
  *     summary: Create a new student
+ *     tags: [Students]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               firstName:
- *                 type: string
- *               lastName:
- *                 type: string
- *               gender:
- *                 type: string
- *               age:
- *                 type: number
- *               favoriteSubject:
- *                 type: string
- *               grade:
- *                 type: string
- *               email:
- *                 type: string
+ *             $ref: '#/components/schemas/Student'
  *     responses:
  *       201:
  *         description: The created student
  *         content:
  *           application/json:
  *             schema:
- *               type: object
+ *               $ref: '#/components/schemas/Student'
+ *       400:
+ *         description: Validation error
  */
 router.post('/', studentValidationRules(), validate, studentController.createStudent);
 
@@ -83,6 +78,7 @@ router.post('/', studentValidationRules(), validate, studentController.createStu
  * /student/{id}:
  *   put:
  *     summary: Update a student by ID
+ *     tags: [Students]
  *     parameters:
  *       - in: path
  *         name: id
@@ -95,29 +91,18 @@ router.post('/', studentValidationRules(), validate, studentController.createStu
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               firstName:
- *                 type: string
- *               lastName:
- *                 type: string
- *               gender:
- *                 type: string
- *               age:
- *                 type: number
- *               favoriteSubject:
- *                 type: string
- *               grade:
- *                 type: string
- *               email:
- *                 type: string
+ *             $ref: '#/components/schemas/Student'
  *     responses:
  *       200:
  *         description: The updated student
  *         content:
  *           application/json:
  *             schema:
- *               type: object
+ *               $ref: '#/components/schemas/Student'
+ *       400:
+ *         description: Validation error
+ *       404:
+ *         description: Student not found
  */
 router.put('/:id', studentValidationRules(), validate, studentController.updateStudent);
 
@@ -126,6 +111,7 @@ router.put('/:id', studentValidationRules(), validate, studentController.updateS
  * /student/{id}:
  *   delete:
  *     summary: Delete a student by ID
+ *     tags: [Students]
  *     parameters:
  *       - in: path
  *         name: id
@@ -135,12 +121,36 @@ router.put('/:id', studentValidationRules(), validate, studentController.updateS
  *         description: The student ID
  *     responses:
  *       200:
- *         description: A message indicating the student was deleted
- *         content:
- *           application/json:
- *             schema:
- *               type: object
+ *         description: Student deleted successfully
+ *       404:
+ *         description: Student not found
  */
 router.delete('/:id', studentValidationRules(), validate, studentController.deleteStudent);
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Student:
+ *       type: object
+ *       properties:
+ *         firstName:
+ *           type: string
+ *         lastName:
+ *           type: string
+ *         gender:
+ *           type: string
+ *         age:
+ *           type: number
+ *         favoriteSubject:
+ *           type: string
+ *         grade:
+ *           type: string
+ *         email:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ */
 
 module.exports = router;
