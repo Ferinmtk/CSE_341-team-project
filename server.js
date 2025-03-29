@@ -42,11 +42,11 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // app.use("/auth", authRoutes);
 
 app.use("/", routes);
-app.use('/student', studentRoutes);
 app.use("/auth", authRoutes);
-app.use('/instructor', instructorRoutes);
-app.use('/library', libraryRoutes);
-app.use('/player', playerRoutes);
+app.use('/student', ensureAuthenticated, studentRoutes);
+app.use('/instructor', ensureAuthenticated, instructorRoutes);
+app.use('/library', ensureAuthenticated, libraryRoutes);
+app.use('/player', ensureAuthenticated, playerRoutes);
 
 
 connectDB().then(() => {
