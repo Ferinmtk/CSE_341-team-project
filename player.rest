@@ -1,16 +1,16 @@
-# Get all students
+# Get all players
 GET http://localhost:3000/player
 Accept: application/json
 
 ###
 
-# Get a single student by ID
+# Get a single player by ID
 GET http://localhost:3000/player
 Accept: application/json
 
 ###
 
-# Create multiple or single students
+# Create multiple or single players
 POST http://localhost:3000/player
 Content-Type: application/json
 
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 ###
 
-# Update a student by ID (partial update)
+# Update a player by ID (partial update)
 PUT http://localhost:3000/player
 Content-Type: application/json
 
@@ -37,6 +37,6 @@ Content-Type: application/json
 
 ###
 
-# Delete a student by ID
+# Delete a player by ID
 DELETE http://localhost:3000/player
 Accept: application/json

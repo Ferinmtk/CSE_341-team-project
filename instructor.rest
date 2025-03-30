@@ -1,16 +1,16 @@
-# Get all students
+# Get all instructors
 GET http://localhost:3000/instructor
 Accept: application/json
 
 ###
 
-# Get a single student by ID
+# Get a single instructor by ID
 GET http://localhost:3000/instructor/67e8aa8de25c6efb99dbde5d
 Accept: application/json
 
 ###
 
-# Create multiple or single students
+# Create multiple or single instructors
 POST http://localhost:3000/instructor
 Content-Type: application/json
 
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 ###
 
-# Update a student by ID (partial update)
+# Update a instructor by ID (partial update)
 PUT http://localhost:3000/instructor/67e8b2d14c1ea6182100ed2b
 Content-Type: application/json
 
@@ -37,6 +37,6 @@ Content-Type: application/json
 
 ###
 
-# Delete a student by ID
+# Delete a instructor by ID
 DELETE http://localhost:3000/instructor/67e8b2d14c1ea6182100ed2b
 Accept: application/json
