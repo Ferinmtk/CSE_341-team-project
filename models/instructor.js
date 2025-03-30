@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const instructorSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
@@ -8,7 +8,7 @@ const instructorSchema = new mongoose.Schema({
   age: { type: Number, required: true },
   email: { type: String, required: true },
   qualification: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Instructor', instructorSchema);
+module.exports = mongoose.model("Instructor", instructorSchema);

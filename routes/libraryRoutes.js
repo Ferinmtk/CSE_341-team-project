@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const libraryController = require('../controllers/libraryController');
-const { bookValidationRules, validate } = require('../controllers/validator');
+const libraryController = require("../controllers/libraryController");
+const { bookValidationRules, validate } = require("../controllers/validator");
 
 /**
  * @swagger
- * 
+ *
  * # LIBRARY MANAGEMENT ROUTES
- * 
+ *
  * /library/books:
  *   get:
  *     summary: Retrieve a list of all books
@@ -22,7 +22,7 @@ const { bookValidationRules, validate } = require('../controllers/validator');
  *               items:
  *                 $ref: '#/components/schemas/Book'
  */
-router.get('/books', libraryController.getBooks);
+router.get("/books", libraryController.getBooks);
 
 /**
  * @swagger
@@ -47,7 +47,12 @@ router.get('/books', libraryController.getBooks);
  *       404:
  *         description: Book not found
  */
-router.get('/books/:id', bookValidationRules(), validate, libraryController.getBookById);
+router.get(
+  "/books/:id",
+  bookValidationRules(),
+  validate,
+  libraryController.getBookById
+);
 
 /**
  * @swagger
@@ -71,7 +76,12 @@ router.get('/books/:id', bookValidationRules(), validate, libraryController.getB
  *       400:
  *         description: Validation error
  */
-router.post('/books', bookValidationRules(), validate, libraryController.createBook);
+router.post(
+  "/books",
+  bookValidationRules(),
+  validate,
+  libraryController.createBook
+);
 
 /**
  * @swagger
@@ -104,7 +114,12 @@ router.post('/books', bookValidationRules(), validate, libraryController.createB
  *       404:
  *         description: Book not found
  */
-router.put('/books/:id', bookValidationRules(), validate, libraryController.updateBook);
+router.put(
+  "/books/:id",
+  bookValidationRules(),
+  validate,
+  libraryController.updateBook
+);
 
 /**
  * @swagger
@@ -152,6 +167,11 @@ router.put('/books/:id', bookValidationRules(), validate, libraryController.upda
  *           format: date-time
  */
 
-router.delete('/books/:id', bookValidationRules(), validate, libraryController.deleteBook);
+router.delete(
+  "/books/:id",
+  bookValidationRules(),
+  validate,
+  libraryController.deleteBook
+);
 
 module.exports = router;

@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const playerController = require('../controllers/playerController');
-const { playerValidationRules, validate } = require('../controllers/validator');
+const playerController = require("../controllers/playerController");
+const { playerValidationRules, validate } = require("../controllers/validator");
 
 /**
  * @swagger
- * 
+ *
  * # PLAYER MANAGEMENT ROUTES
- * 
+ *
  * /player:
  *   get:
  *     summary: Retrieve a list of players
@@ -22,7 +22,7 @@ const { playerValidationRules, validate } = require('../controllers/validator');
  *               items:
  *                 $ref: '#/components/schemas/Player'
  */
-router.get('/', playerController.getPlayers);
+router.get("/", playerController.getPlayers);
 
 /**
  * @swagger
@@ -47,7 +47,12 @@ router.get('/', playerController.getPlayers);
  *       404:
  *         description: Player not found
  */
-router.get('/:id', playerValidationRules(), validate, playerController.getPlayerById);
+router.get(
+  "/:id",
+  playerValidationRules(),
+  validate,
+  playerController.getPlayerById
+);
 
 /**
  * @swagger
@@ -71,7 +76,12 @@ router.get('/:id', playerValidationRules(), validate, playerController.getPlayer
  *       400:
  *         description: Validation error
  */
-router.post('/', playerValidationRules(), validate, playerController.createPlayer);
+router.post(
+  "/",
+  playerValidationRules(),
+  validate,
+  playerController.createPlayer
+);
 
 /**
  * @swagger
@@ -104,7 +114,12 @@ router.post('/', playerValidationRules(), validate, playerController.createPlaye
  *       404:
  *         description: Player not found
  */
-router.put('/:id', playerValidationRules(), validate, playerController.updatePlayer);
+router.put(
+  "/:id",
+  playerValidationRules(),
+  validate,
+  playerController.updatePlayer
+);
 
 /**
  * @swagger
@@ -152,6 +167,11 @@ router.put('/:id', playerValidationRules(), validate, playerController.updatePla
  *           format: date-time
  */
 
-router.delete('/:id', playerValidationRules(), validate, playerController.deletePlayer);
+router.delete(
+  "/:id",
+  playerValidationRules(),
+  validate,
+  playerController.deletePlayer
+);
 
 module.exports = router;

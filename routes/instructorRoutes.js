@@ -1,13 +1,16 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const instructorController = require('../controllers/instructorController');
-const { instructorValidationRules, validate } = require('../controllers/validator');
+const instructorController = require("../controllers/instructorController");
+const {
+  instructorValidationRules,
+  validate,
+} = require("../controllers/validator");
 
 /**
  * @swagger
- * 
+ *
  * # INSTRUCTOR MANAGEMENT ROUTES
- * 
+ *
  * /instructor:
  *   get:
  *     summary: Retrieve a list of instructors
@@ -22,7 +25,7 @@ const { instructorValidationRules, validate } = require('../controllers/validato
  *               items:
  *                 $ref: '#/components/schemas/Instructor'
  */
-router.get('/', instructorController.getInstructors);
+router.get("/", instructorController.getInstructors);
 
 /**
  * @swagger
@@ -47,7 +50,12 @@ router.get('/', instructorController.getInstructors);
  *       404:
  *         description: Instructor not found
  */
-router.get('/:id', instructorValidationRules(), validate, instructorController.getInstructorById);
+router.get(
+  "/:id",
+  instructorValidationRules(),
+  validate,
+  instructorController.getInstructorById
+);
 
 /**
  * @swagger
@@ -71,7 +79,12 @@ router.get('/:id', instructorValidationRules(), validate, instructorController.g
  *       400:
  *         description: Validation error
  */
-router.post('/', instructorValidationRules(), validate, instructorController.createInstructor);
+router.post(
+  "/",
+  instructorValidationRules(),
+  validate,
+  instructorController.createInstructor
+);
 
 /**
  * @swagger
@@ -104,7 +117,12 @@ router.post('/', instructorValidationRules(), validate, instructorController.cre
  *       404:
  *         description: Instructor not found
  */
-router.put('/:id', instructorValidationRules(), validate, instructorController.updateInstructor);
+router.put(
+  "/:id",
+  instructorValidationRules(),
+  validate,
+  instructorController.updateInstructor
+);
 
 /**
  * @swagger
@@ -152,6 +170,11 @@ router.put('/:id', instructorValidationRules(), validate, instructorController.u
  *           format: date-time
  */
 
-router.delete('/:id', instructorValidationRules(), validate, instructorController.deleteInstructor);
+router.delete(
+  "/:id",
+  instructorValidationRules(),
+  validate,
+  instructorController.deleteInstructor
+);
 
 module.exports = router;

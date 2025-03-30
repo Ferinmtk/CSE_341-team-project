@@ -1,0 +1,42 @@
+# Get all students
+GET http://localhost:3000/player
+Accept: application/json
+
+###
+
+# Get a single student by ID
+GET http://localhost:3000/player
+Accept: application/json
+
+###
+
+# Create multiple or single students
+POST http://localhost:3000/player
+Content-Type: application/json
+
+{
+    "firstName": "From",
+    "lastName": "ME",
+    "gender": "Female",
+    "age": 34,
+    "favoriteSubject": "Computer Science",
+    "grade": "C+",
+    "email": "timo@example.com"
+}
+
+###
+
+# Update a student by ID (partial update)
+PUT http://localhost:3000/player
+Content-Type: application/json
+
+{
+  "lastName": "Island",
+  "age": 27
+}
+
+###
+
+# Delete a student by ID
+DELETE http://localhost:3000/player
+Accept: application/json

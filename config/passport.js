@@ -9,7 +9,7 @@ passport.use(
       callbackURL: `${process.env.SERVER_URL}/auth/github/callback`,
     },
     (accessToken, refreshToken, profile, done) => {
-    //   console.log("GitHub Profile:", profile); // Debug log
+      //   console.log("GitHub Profile:", profile); // Debug log
       return done(null, profile);
     }
   )

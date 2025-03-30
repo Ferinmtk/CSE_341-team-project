@@ -1,4 +1,4 @@
-const Player = require('../models/player');
+const Player = require("../models/player");
 
 exports.createPlayer = async (req, res) => {
   try {
@@ -23,7 +23,7 @@ exports.getPlayerById = async (req, res) => {
   try {
     const player = await Player.findById(req.params.id);
     if (!player) {
-      return res.status(404).json({ error: 'Player not found' });
+      return res.status(404).json({ error: "Player not found" });
     }
     res.status(200).json(player);
   } catch (error) {
@@ -39,7 +39,7 @@ exports.updatePlayer = async (req, res) => {
       { new: true, runValidators: true }
     );
     if (!player) {
-      return res.status(404).json({ error: 'Player not found' });
+      return res.status(404).json({ error: "Player not found" });
     }
     res.status(200).json(player);
   } catch (error) {
@@ -51,9 +51,9 @@ exports.deletePlayer = async (req, res) => {
   try {
     const player = await Player.findByIdAndDelete(req.params.id);
     if (!player) {
-      return res.status(404).json({ error: 'Player not found' });
+      return res.status(404).json({ error: "Player not found" });
     }
-    res.status(200).json({ message: 'Player deleted successfully' });
+    res.status(200).json({ message: "Player deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

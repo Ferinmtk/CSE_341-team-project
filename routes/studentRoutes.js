@@ -1,13 +1,16 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const studentController = require('../controllers/studentController');
-const { studentValidationRules, validate } = require('../controllers/validator');
+const studentController = require("../controllers/studentController");
+const {
+  studentValidationRules,
+  validate,
+} = require("../controllers/validator");
 
 /**
  * @swagger
- * 
+ *
  * # STUDENT MANAGEMENT ROUTES
- * 
+ *
  * /student:
  *   get:
  *     summary: Retrieve a list of students
@@ -22,7 +25,7 @@ const { studentValidationRules, validate } = require('../controllers/validator')
  *               items:
  *                 $ref: '#/components/schemas/Student'
  */
-router.get('/', studentController.getStudents);
+router.get("/", studentController.getStudents);
 
 /**
  * @swagger
@@ -47,7 +50,12 @@ router.get('/', studentController.getStudents);
  *       404:
  *         description: Student not found
  */
-router.get('/:id', studentValidationRules(), validate, studentController.getStudentById);
+router.get(
+  "/:id",
+  studentValidationRules(),
+  validate,
+  studentController.getStudentById
+);
 
 /**
  * @swagger
@@ -71,7 +79,12 @@ router.get('/:id', studentValidationRules(), validate, studentController.getStud
  *       400:
  *         description: Validation error
  */
-router.post('/', studentValidationRules(), validate, studentController.createStudent);
+router.post(
+  "/",
+  studentValidationRules(),
+  validate,
+  studentController.createStudent
+);
 
 /**
  * @swagger
@@ -104,7 +117,12 @@ router.post('/', studentValidationRules(), validate, studentController.createStu
  *       404:
  *         description: Student not found
  */
-router.put('/:id', studentValidationRules(), validate, studentController.updateStudent);
+router.put(
+  "/:id",
+  studentValidationRules(),
+  validate,
+  studentController.updateStudent
+);
 
 /**
  * @swagger
@@ -125,7 +143,12 @@ router.put('/:id', studentValidationRules(), validate, studentController.updateS
  *       404:
  *         description: Student not found
  */
-router.delete('/:id', studentValidationRules(), validate, studentController.deleteStudent);
+router.delete(
+  "/:id",
+  studentValidationRules(),
+  validate,
+  studentController.deleteStudent
+);
 
 /**
  * @swagger

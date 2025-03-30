@@ -1,0 +1,42 @@
+# Get all students
+GET http://localhost:3000/instructor
+Accept: application/json
+
+###
+
+# Get a single student by ID
+GET http://localhost:3000/instructor/67e8aa8de25c6efb99dbde5d
+Accept: application/json
+
+###
+
+# Create multiple or single students
+POST http://localhost:3000/instructor
+Content-Type: application/json
+
+{
+    "firstName": "Sonia",
+    "lastName": "Blade",
+    "course": "Physics",
+    "gender": "Female",
+    "age": 35,
+    "email": "sonia@example.com",
+    "qualification": "PhD"
+}
+
+###
+
+# Update a student by ID (partial update)
+PUT http://localhost:3000/instructor/67e8b2d14c1ea6182100ed2b
+Content-Type: application/json
+
+{
+  "lastName": "Island",
+  "age": 27
+}
+
+###
+
+# Delete a student by ID
+DELETE http://localhost:3000/instructor/67e8b2d14c1ea6182100ed2b
+Accept: application/json

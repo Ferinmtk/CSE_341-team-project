@@ -1,0 +1,42 @@
+# Get all students
+GET http://localhost:3000/library/books
+Accept: application/json
+
+###
+
+# Get a single student by ID
+GET http://localhost:3000/library/books
+Accept: application/json
+
+###
+
+# Create multiple or single students
+POST http://localhost:3000/library/books
+Content-Type: application/json
+
+{
+   "bookTitle": "Things Fall Apart",
+    "author": "Chinua Achebe",
+    "publisher": "Heinemann",
+    "publicationYear": 1813,
+    "shelveLocation": "Classic 456",
+    "genre": "Classic Literature",
+    "copiesAvailable": 65
+}
+
+###
+
+# Update a student by ID (partial update)
+PUT http://localhost:3000/library/books
+Content-Type: application/json
+
+{
+  "lastName": "Island",
+  "age": 27
+}
+
+###
+
+# Delete a student by ID
+DELETE http://localhost:3000/library/books/67e8b7cc0dc884bda8a873a5
+Accept: application/json

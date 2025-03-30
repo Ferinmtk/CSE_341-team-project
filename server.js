@@ -1,17 +1,17 @@
 require("dotenv").config();
-const express = require('express');
+const express = require("express");
 const connectDB = require("./data/database");
 const app = express();
-const bodyParser = require('body-parser');
-const { swaggerUi, swaggerSpec } = require('./swagger');
-const studentRoutes = require('./routes/studentRoutes');
-const session = require('express-session');
-const passport = require('passport');
-const authRoutes = require('./routes/authRoutes');
-const instructorRoutes = require('./routes/instructorRoutes');
-const libraryRoutes = require('./routes/libraryRoutes');
-const playerRoutes = require('./routes/playerRoutes');
-const routes = require('./routes/index');
+const bodyParser = require("body-parser");
+const { swaggerUi, swaggerSpec } = require("./swagger");
+const studentRoutes = require("./routes/studentRoutes");
+const session = require("express-session");
+const passport = require("passport");
+const authRoutes = require("./routes/authRoutes");
+const instructorRoutes = require("./routes/instructorRoutes");
+const libraryRoutes = require("./routes/libraryRoutes");
+const playerRoutes = require("./routes/playerRoutes");
+const routes = require("./routes/index");
 
 const port = process.env.PORT || 3000;
 
@@ -37,24 +37,23 @@ app.use(passport.session());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
-// app.use("/", routes);
-// app.use('/student', ensureAuthenticated, studentRoutes);
-// app.use("/auth", authRoutes);
-
 app.use("/", routes);
 app.use("/auth", authRoutes);
-app.use('/student', ensureAuthenticated, studentRoutes);
-app.use('/instructor', ensureAuthenticated, instructorRoutes);
-app.use('/library', ensureAuthenticated, libraryRoutes);
-app.use('/player', ensureAuthenticated, playerRoutes);
+app.use("/student", ensureAuthenticated, studentRoutes);
+app.use("/instructor", ensureAuthenticated, instructorRoutes);
+app.use("/library", ensureAuthenticated, libraryRoutes);
+app.use("/player", ensureAuthenticated, playerRoutes);
 
-
-connectDB().then(() => {
-  require("./config/passport"); // Load Passport after DB connection
-  app.listen(port, '0.0.0.0', () => {
-    console.log(`Server running at http://localhost:${port}`);
-    console.log(`Swagger Docs available at http://localhost:${port}/api-docs`);
+connectDB()
+  .then(() => {
+    require("./config/passport"); // Load Passport after DB connection
+    app.listen(port, "0.0.0.0", () => {
+      console.log(`Server running at http://localhost:${port}`);
+      console.log(
+        `Swagger Docs available at http://localhost:${port}/api-docs`
+      );
+    });
+  })
+  .catch((err) => {
+    console.error("Failed to connect to the database", err);
   });
-}).catch(err => {
-  console.error("Failed to connect to the database", err);
-});

@@ -1,32 +1,37 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const passport = require('passport');
+const passport = require("passport");
 
 /**
  * @swagger
  * /auth/github:
  *   get:
  *     summary: Initiate GitHub OAuth login
+ *     tags: [Authentication]
  *     responses:
  *       302:
  *         description: Redirects to GitHub login page
  */
-router.get('/github', passport.authenticate('github', { scope: ['user:email'] }));
+router.get(
+  "/github",
+  passport.authenticate("github", { scope: ["user:email"] })
+);
 
 /**
  * @swagger
  * /auth/github/callback:
  *   get:
  *     summary: Handle GitHub OAuth callback
+ *     tags: [Authentication]
  *     responses:
  *       302:
  *         description: Redirects to home on success or failure
  */
 router.get(
-  '/github/callback',
-  passport.authenticate('github', { failureRedirect: '/' }),
+  "/github/callback",
+  passport.authenticate("github", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect('/'); // Redirect to base route after login
+    res.redirect("/"); // Redirect to base route after login
   }
 );
 
@@ -35,14 +40,15 @@ router.get(
  * /auth/logout:
  *   get:
  *     summary: Log out the current user
+ *     tags: [Authentication]
  *     responses:
  *       302:
  *         description: Redirects to home page after logout
  */
-router.get('/logout', (req, res, next) => {
+router.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
-    res.redirect('/');
+    res.redirect("/");
   });
 });
 
@@ -51,6 +57,7 @@ router.get('/logout', (req, res, next) => {
  * /auth/user:
  *   get:
  *     summary: Get the current authenticated user
+ *     tags: [Authentication]
  *     responses:
  *       200:
  *         description: Returns the current user object
@@ -59,11 +66,11 @@ router.get('/logout', (req, res, next) => {
  *             schema:
  *               type: object
  */
-router.get('/user', (req, res) => {
+router.get("/user", (req, res) => {
   if (req.isAuthenticated()) {
     res.json(req.user);
   } else {
-    res.status(401).json({ message: 'Not authenticated' });
+    res.status(401).json({ message: "Not authenticated" });
   }
 });
 
