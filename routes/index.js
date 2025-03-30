@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
     );
   } else {
     res.send(
-      'Welcome to CSE341 - TEAM 9 WEB SERVICES API PROJECT! <a href="/auth/github">Login with GitHub</a>'
+      'Welcome to CSE341 - TEAM 9 WEB SERVICES API PROJECT - EduSport! <a href="/auth/github">Login with GitHub</a>'
     );
   }
 });
