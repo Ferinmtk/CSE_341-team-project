@@ -8,7 +8,11 @@ const studentSchema = new mongoose.Schema({
   favoriteSubject: { type: String, required: true },
   grade: { type: String, required: true },
   email: { type: String, required: true },
+  instructors: [{ type: mongoose.Schema.Types.ObjectId, ref: "Instructor" }], // Array of instructor IDs
   createdAt: { type: Date, default: Date.now },
+  },
+{
+  versionKey: false // Disable __v
 });
 
 module.exports = mongoose.model("Student", studentSchema);

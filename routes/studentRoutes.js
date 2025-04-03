@@ -31,7 +31,7 @@ router.get("/", studentController.getStudents);
  * @swagger
  * /student/{id}:
  *   get:
- *     summary: Retrieve a single student by ID
+ *     summary: Retrieve a single student by ID with instructor names
  *     tags: [Students]
  *     parameters:
  *       - in: path
@@ -42,7 +42,7 @@ router.get("/", studentController.getStudents);
  *         description: The student ID
  *     responses:
  *       200:
- *         description: A single student
+ *         description: A single student with instructor names
  *         content:
  *           application/json:
  *             schema:
@@ -157,23 +157,22 @@ router.delete(
  *     Student:
  *       type: object
  *       properties:
- *         firstName:
- *           type: string
- *         lastName:
- *           type: string
- *         gender:
- *           type: string
- *         age:
- *           type: number
- *         favoriteSubject:
- *           type: string
- *         grade:
- *           type: string
- *         email:
- *           type: string
- *         createdAt:
- *           type: string
- *           format: date-time
+ *         firstName: { type: string }
+ *         lastName: { type: string }
+ *         gender: { type: string }
+ *         age: { type: number }
+ *         favoriteSubject: { type: string }
+ *         grade: { type: string }
+ *         email: { type: string }
+ *         instructors:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               _id: { type: string }
+ *               firstName: { type: string }
+ *               lastName: { type: string }
+ *               email: { type: string }
+ *         createdAt: { type: string, format: "date-time" }
  */
-
 module.exports = router;

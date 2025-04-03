@@ -31,7 +31,7 @@ router.get("/", instructorController.getInstructors);
  * @swagger
  * /instructor/{id}:
  *   get:
- *     summary: Retrieve a single instructor by ID
+ *     summary: Retrieve a single instructor by ID with enrolled students' names
  *     tags: [Instructors]
  *     parameters:
  *       - in: path
@@ -42,7 +42,7 @@ router.get("/", instructorController.getInstructors);
  *         description: The instructor ID
  *     responses:
  *       200:
- *         description: A single instructor
+ *         description: A single instructor with student names
  *         content:
  *           application/json:
  *             schema:
@@ -85,6 +85,7 @@ router.post(
   validate,
   instructorController.createInstructor
 );
+
 
 /**
  * @swagger
@@ -151,25 +152,24 @@ router.put(
  *     Instructor:
  *       type: object
  *       properties:
- *         firstName:
- *           type: string
- *         lastName:
- *           type: string
- *         course:
- *           type: string
- *         gender:
- *           type: string
- *         age:
- *           type: number
- *         email:
- *           type: string
- *         qualification:
- *           type: string
- *         createdAt:
- *           type: string
- *           format: date-time
+ *         firstName: { type: string }
+ *         lastName: { type: string }
+ *         course: { type: string }
+ *         gender: { type: string }
+ *         age: { type: number }
+ *         email: { type: string }
+ *         qualification: { type: string }
+ *         students:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               _id: { type: string }
+ *               firstName: { type: string }
+ *               lastName: { type: string }
+ *               email: { type: string }
+ *         createdAt: { type: string, format: "date-time" }
  */
-
 router.delete(
   "/:id",
   instructorValidationRules(),
