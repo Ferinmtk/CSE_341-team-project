@@ -58,14 +58,30 @@ router.get(
  * @swagger
  * /library/books:
  *   post:
- *     summary: Add a new book to the library
+ *     summary: Create a new book
  *     tags: [Library]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Book'
+ *             type: object
+ *             required:
+ *               - bookTitle
+ *               - author
+ *               - publisher
+ *               - publicationYear
+ *               - shelveLocation
+ *               - genre
+ *               - copiesAvailable
+ *             properties:
+ *               bookTitle: { type: string }
+ *               author: { type: string }
+ *               publisher: { type: string }
+ *               publicationYear: { type: number }
+ *               shelveLocation: { type: string }
+ *               genre: { type: string }
+ *               copiesAvailable: { type: number }
  *     responses:
  *       201:
  *         description: The created book
@@ -221,18 +237,6 @@ router.put(
  *         shelveLocation: { type: string }
  *         genre: { type: string }
  *         copiesAvailable: { type: number }
- *         borrowedBy:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               borrowerId:
- *                 type: object
- *                 properties:
- *                   _id: { type: string }
- *                   firstName: { type: string }
- *                   lastName: { type: string }
- *               borrowerType: { type: string, enum: [Student, Instructor] }
  *         createdAt: { type: string, format: "date-time" }
  */
 

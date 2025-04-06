@@ -68,7 +68,23 @@ router.get(
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Student'
+ *             type: object
+ *             required:
+ *               - firstName
+ *               - lastName
+ *               - gender
+ *               - age
+ *               - favoriteSubject
+ *               - grade
+ *               - email
+ *             properties:
+ *               firstName: { type: string }
+ *               lastName: { type: string }
+ *               gender: { type: string }
+ *               age: { type: number }
+ *               favoriteSubject: { type: string }
+ *               grade: { type: string }
+ *               email: { type: string }
  *     responses:
  *       201:
  *         description: The created student
@@ -79,6 +95,7 @@ router.get(
  *       400:
  *         description: Validation error
  */
+
 router.post(
   "/",
   studentValidationRules(),
@@ -164,15 +181,6 @@ router.delete(
  *         favoriteSubject: { type: string }
  *         grade: { type: string }
  *         email: { type: string }
- *         instructors:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               _id: { type: string }
- *               firstName: { type: string }
- *               lastName: { type: string }
- *               email: { type: string }
  *         createdAt: { type: string, format: "date-time" }
  */
 module.exports = router;

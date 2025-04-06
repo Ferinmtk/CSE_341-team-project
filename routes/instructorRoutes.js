@@ -68,7 +68,23 @@ router.get(
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Instructor'
+ *             type: object
+ *             required:
+ *               - firstName
+ *               - lastName
+ *               - course
+ *               - gender
+ *               - age
+ *               - email
+ *               - qualification
+ *             properties:
+ *               firstName: { type: string }
+ *               lastName: { type: string }
+ *               course: { type: string }
+ *               gender: { type: string }
+ *               age: { type: number }
+ *               email: { type: string }
+ *               qualification: { type: string }
  *     responses:
  *       201:
  *         description: The created instructor
@@ -159,15 +175,6 @@ router.put(
  *         age: { type: number }
  *         email: { type: string }
  *         qualification: { type: string }
- *         students:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               _id: { type: string }
- *               firstName: { type: string }
- *               lastName: { type: string }
- *               email: { type: string }
  *         createdAt: { type: string, format: "date-time" }
  */
 router.delete(
