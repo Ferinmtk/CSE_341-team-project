@@ -12,16 +12,12 @@ const instructorRoutes = require("./routes/instructorRoutes");
 const libraryRoutes = require("./routes/libraryRoutes");
 const playerRoutes = require("./routes/playerRoutes");
 const routes = require("./routes/index");
+const mongoose = require("mongoose"); // Import mongoose for disconnection
 
 const port = process.env.PORT || 3000;
 
-// Middleware to enforce authentication
-const ensureAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.status(401).json({ error: "Access denied. Log in first." });
-};
+// Import authentication middleware
+const { ensureAuthenticated } = require("./middleware/auth");
 
 app.use(bodyParser.json());
 app.use(
@@ -44,16 +40,29 @@ app.use("/instructor", ensureAuthenticated, instructorRoutes);
 app.use("/library", ensureAuthenticated, libraryRoutes);
 app.use("/player", ensureAuthenticated, playerRoutes);
 
-connectDB()
-  .then(() => {
-    require("./config/passport"); // Load Passport after DB connection
-    app.listen(port, "0.0.0.0", () => {
+// Start server only if run directly (not required as a module)
+if (require.main === module) {
+  connectDB()
+    .then(() => {
+      require("./config/passport"); // Load Passport after DB connection
+      app.listen(port, "0.0.0.0", () => {
       console.log(`Server running at http://localhost:${port}`);
       console.log(
         `Swagger Docs available at http://localhost:${port}/api-docs`
-      );
+        );
+      });
+    })
+    .catch((err) => {
+      console.error("Failed to connect to the database", err);
+      process.exit(1); // Ensure exit on DB connection failure
     });
-  })
-  .catch((err) => {
-    console.error("Failed to connect to the database", err);
-  });
+}
+
+// Function to close the database connection
+const closeDB = async () => {
+  await mongoose.disconnect();
+  console.log("MongoDB Disconnected");
+};
+
+// Export the app, connectDB, and closeDB for testing
+module.exports = { app, connectDB, closeDB };
