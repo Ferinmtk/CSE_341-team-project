@@ -15,13 +15,7 @@ POST http://localhost:3000/player
 Content-Type: application/json
 
 {
-    "firstName": "From",
-    "lastName": "ME",
-    "gender": "Female",
-    "age": 34,
-    "favoriteSubject": "Computer Science",
-    "grade": "C+",
-    "email": "timo@example.com"
+    
 }
 
 ###

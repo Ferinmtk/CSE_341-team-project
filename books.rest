@@ -5,39 +5,53 @@ Accept: application/json
 ###
 
 # Get a single book by ID
-GET http://localhost:3000/library/books
+GET http://localhost:3000/library/books/67e9d792e72212ae72999362
 Accept: application/json
 
 ###
 
-# Create multiple or single books
+# Create a single book
 POST http://localhost:3000/library/books
 Content-Type: application/json
 
 {
-   "bookTitle": "Things Fall Apart",
-    "author": "Chinua Achebe",
-    "publisher": "Heinemann",
-    "publicationYear": 1813,
+    "bookTitle": "The Return of Ikenga",
+    "author": "Chukwuemeka Ohuka",
+    "publisher": "Macmillan Nigeria",
+    "publicationYear": 1980,
     "shelveLocation": "Classic 456",
     "genre": "Classic Literature",
-    "copiesAvailable": 65
+    "copiesAvailable": 2
 }
 
 ###
 
-# Update a book by ID (partial update)
-PUT http://localhost:3000/library/books
+# Borrow a book by a student
+POST http://localhost:3000/library/books/67ee9cd522d1dbe195f2cfdd/borrow
 Content-Type: application/json
 
 {
-  "bookTitle": "Things Fall Apart",
-  "author": "Chinua Achebe",
-  "publisher": "Heinemann",
-  "publicationYear": 1813,
-  "shelveLocation": "Classic 456",
-  "genre": "Classic Literature",
-  "copiesAvailable": 65
+    "borrowerId": "67e9e2850d65edefaa323d59",
+    "borrowerType": "Student"
+}
+
+###
+
+# Return a borrowed book
+POST http://localhost:3000/library/books/67ee9cd522d1dbe195f2cfdd/return
+Content-Type: application/json
+
+{
+    "borrowerId": "67e6bda6762b489499bd621d"
+}
+###
+
+# Update a book by ID (partial update)
+PUT http://localhost:3000/library/books/67e8b7cc0dc884bda8a873a5
+Content-Type: application/json
+
+{
+    "copiesAvailable": 60
 }
 
 ###

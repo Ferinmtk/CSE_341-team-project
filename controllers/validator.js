@@ -43,6 +43,10 @@ const instructorValidationRules = () => {
       .notEmpty()
       .withMessage("Qualification is required"),
     param("id").optional().isMongoId().withMessage("Invalid instructor ID"),
+    body("studentId")
+      .optional()
+      .isMongoId()
+      .withMessage("Invalid student ID"),
   ];
 };
 
@@ -72,6 +76,15 @@ const bookValidationRules = () => {
       .isInt({ min: 1 })
       .withMessage("Copies available must be a positive integer"),
     param("id").optional().isMongoId().withMessage("Invalid book ID"),
+    
+    body("borrowerId")
+      .optional()
+      .isMongoId()
+      .withMessage("Invalid borrower ID"),
+    body("borrowerType")
+      .optional()
+      .isIn(["Student", "Instructor"])
+      .withMessage("Borrower type must be Student or Instructor"),
   ];
 };
 

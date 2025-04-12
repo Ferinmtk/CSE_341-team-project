@@ -5,7 +5,7 @@ Accept: application/json
 ###
 
 # Get a single student by ID
-GET http://localhost:3000/student/67e6c038762b489499bd6224
+GET http://localhost:3000/student/67eea7f9aac6b8ab2c63bf4f
 Accept: application/json
 
 ###
@@ -15,13 +15,13 @@ POST http://localhost:3000/student
 Content-Type: application/json
 
 {
-    "firstName": "From",
-    "lastName": "ME",
+    "firstName": "Jennifer",
+    "lastName": "Lopez",
     "gender": "Female",
-    "age": 34,
-    "favoriteSubject": "Computer Science",
+    "age": 25,
+    "favoriteSubject": "Biology",
     "grade": "C+",
-    "email": "timo@example.com"
+    "email": "jennifer@example.com"
 }
 
 ###
@@ -31,12 +31,12 @@ PUT http://localhost:3000/student/67e6c038762b489499bd6224
 Content-Type: application/json
 
 {
-  "lastName": "Island",
-  "age": 27
+  "favoriteSubject": "Math"
 }
+
 
 ###
 
 # Delete a student by ID
-DELETE http://localhost:3000/student/67e6c038762b489499bd6224
+DELETE http://localhost:3000/student/67e9c2bbc30f038ccdc43a18
 Accept: application/json

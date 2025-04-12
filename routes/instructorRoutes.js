@@ -31,7 +31,7 @@ router.get("/", instructorController.getInstructors);
  * @swagger
  * /instructor/{id}:
  *   get:
- *     summary: Retrieve a single instructor by ID
+ *     summary: Retrieve a single instructor by ID with enrolled students' names
  *     tags: [Instructors]
  *     parameters:
  *       - in: path
@@ -42,7 +42,7 @@ router.get("/", instructorController.getInstructors);
  *         description: The instructor ID
  *     responses:
  *       200:
- *         description: A single instructor
+ *         description: A single instructor with student names
  *         content:
  *           application/json:
  *             schema:
@@ -68,7 +68,23 @@ router.get(
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Instructor'
+ *             type: object
+ *             required:
+ *               - firstName
+ *               - lastName
+ *               - course
+ *               - gender
+ *               - age
+ *               - email
+ *               - qualification
+ *             properties:
+ *               firstName: { type: string }
+ *               lastName: { type: string }
+ *               course: { type: string }
+ *               gender: { type: string }
+ *               age: { type: number }
+ *               email: { type: string }
+ *               qualification: { type: string }
  *     responses:
  *       201:
  *         description: The created instructor
@@ -85,6 +101,7 @@ router.post(
   validate,
   instructorController.createInstructor
 );
+
 
 /**
  * @swagger
@@ -151,25 +168,15 @@ router.put(
  *     Instructor:
  *       type: object
  *       properties:
- *         firstName:
- *           type: string
- *         lastName:
- *           type: string
- *         course:
- *           type: string
- *         gender:
- *           type: string
- *         age:
- *           type: number
- *         email:
- *           type: string
- *         qualification:
- *           type: string
- *         createdAt:
- *           type: string
- *           format: date-time
+ *         firstName: { type: string }
+ *         lastName: { type: string }
+ *         course: { type: string }
+ *         gender: { type: string }
+ *         age: { type: number }
+ *         email: { type: string }
+ *         qualification: { type: string }
+ *         createdAt: { type: string, format: "date-time" }
  */
-
 router.delete(
   "/:id",
   instructorValidationRules(),

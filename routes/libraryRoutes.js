@@ -58,14 +58,30 @@ router.get(
  * @swagger
  * /library/books:
  *   post:
- *     summary: Add a new book to the library
+ *     summary: Create a new book
  *     tags: [Library]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Book'
+ *             type: object
+ *             required:
+ *               - bookTitle
+ *               - author
+ *               - publisher
+ *               - publicationYear
+ *               - shelveLocation
+ *               - genre
+ *               - copiesAvailable
+ *             properties:
+ *               bookTitle: { type: string }
+ *               author: { type: string }
+ *               publisher: { type: string }
+ *               publicationYear: { type: number }
+ *               shelveLocation: { type: string }
+ *               genre: { type: string }
+ *               copiesAvailable: { type: number }
  *     responses:
  *       201:
  *         description: The created book
@@ -83,6 +99,72 @@ router.post(
   libraryController.createBook
 );
 
+/**
+ * @swagger
+ * /library/books/{id}/borrow:
+ *   post:
+ *     summary: Borrow a book by a student or instructor
+ *     tags: [Library]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The book ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               borrowerId: { type: string }
+ *               borrowerType: { type: string, enum: [Student, Instructor] }
+ *             required: [borrowerId, borrowerType]
+ *     responses:
+ *       200:
+ *         description: Book borrowed successfully
+ *       400:
+ *         description: Validation error, no copies, or already borrowed by this user
+ *       404:
+ *         description: Book not found
+ */
+
+router.post("/books/:id/borrow", bookValidationRules(), validate, libraryController.borrowBook);
+
+/**
+ * @swagger
+ * /library/books/{id}/return:
+ *   post:
+ *     summary: Return a borrowed book
+ *     tags: [Library]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The book ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               borrowerId: { type: string }
+ *             required: [borrowerId]
+ *     responses:
+ *       200:
+ *         description: Book returned successfully
+ *       400:
+ *         description: Book not borrowed by this user
+ *       404:
+ *         description: Book not found
+ */
+
+router.post("/books/:id/return", bookValidationRules(), validate, libraryController.returnBook);
 /**
  * @swagger
  * /library/books/{id}:
@@ -145,26 +227,17 @@ router.put(
  * @swagger
  * components:
  *   schemas:
- *     Library:
+ *     Book:
  *       type: object
  *       properties:
- *         bookTitle:
- *           type: string
- *         author:
- *           type: string
- *         publisher:
- *           type: string
- *         publicationYear:
- *           type: number
- *         shelveLocation:
- *           type: string
- *         genre:
- *           type: string
- *         copiesAvailable:
- *           type: number
- *         createdAt:
- *           type: string
- *           format: date-time
+ *         bookTitle: { type: string }
+ *         author: { type: string }
+ *         publisher: { type: string }
+ *         publicationYear: { type: number }
+ *         shelveLocation: { type: string }
+ *         genre: { type: string }
+ *         copiesAvailable: { type: number }
+ *         createdAt: { type: string, format: "date-time" }
  */
 
 router.delete(
