@@ -101,6 +101,42 @@ const playerValidationRules = () => {
   ];
 };
 
+// Course validator
+const courseValidationRules = () => {
+  return [
+    body("courseCode")
+      .optional()
+      .notEmpty()
+      .withMessage("Course code is required")
+      .isAlphanumeric()
+      .withMessage("Course code must be alphanumeric"),
+    body("title")
+      .optional()
+      .notEmpty()
+      .withMessage("Course title is required"),
+    body("department")
+      .optional()
+      .notEmpty()
+      .withMessage("Department is required"),
+    body("schedule")
+      .optional()
+      .notEmpty()
+      .withMessage("Schedule is required"),
+    body("room")
+      .optional()
+      .notEmpty()
+      .withMessage("Room is required"),
+    body("credits")
+      .optional()
+      .isInt({ min: 1 })
+      .withMessage("Credits must be a positive integer"),
+    param("id")
+      .optional()
+      .isMongoId()
+      .withMessage("Invalid course ID"),
+  ];
+};
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
@@ -115,5 +151,6 @@ module.exports = {
   instructorValidationRules,
   bookValidationRules,
   playerValidationRules,
+  courseValidationRules,
   validate,
 };
