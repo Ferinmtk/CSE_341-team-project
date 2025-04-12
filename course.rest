@@ -1,0 +1,41 @@
+# Get all courses
+GET http://localhost:3000/course
+Accept: application/json
+
+###
+
+# Get a single course by ID
+GET http://localhost:3000/course/67e6c038762b489499bd6224
+Accept: application/json
+
+###
+
+# Create multiple or single courses
+POST http://localhost:3000/course
+Content-Type: application/json
+
+{
+    "courseCode": "MATH109",
+    "title": "Mathematics",
+    "department": "Mathematics",
+    "schedule": "MWF 9:00-10:30",
+    "room": "Thomas E. Ricks Building 113",
+    "credits": 5
+}
+
+###
+
+# Update a course by ID (partial update)
+PUT http://localhost:3000/course/67e6c038762b489499bd6224
+Content-Type: application/json
+
+{
+    "title": "Advanced Programming",
+    "credits": 4
+}
+
+###
+
+# Delete a course by ID
+DELETE http://localhost:3000/course/67e6c038762b489499bd6224
+Accept: application/json
