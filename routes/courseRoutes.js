@@ -68,7 +68,21 @@ router.get(
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Course'
+ *             type: object
+ *             required:
+ *               - courseCode
+ *               - title
+ *               - department
+ *               - schedule
+ *               - room
+ *               - credits
+ *             properties:
+ *               courseCode: { type: string }
+ *               title: { type: string }
+ *               department: { type: string }
+ *               schedule: { type: number }
+ *               room: { type: string }
+ *               credits: { type: number }
  *     responses:
  *       201:
  *         description: The created course
