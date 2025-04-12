@@ -14,6 +14,7 @@ const playerRoutes = require("./routes/playerRoutes");
 const courseRoutes = require("./routes/courseRoutes");
 const routes = require("./routes/index");
 const mongoose = require("mongoose"); // Import mongoose for disconnection
+const attendanceRoutes = require("./routes/attendanceRoutes");
 
 const port = process.env.PORT || 3000;
 
@@ -41,6 +42,7 @@ app.use("/instructor", ensureAuthenticated, instructorRoutes);
 app.use("/library", ensureAuthenticated, libraryRoutes);
 app.use("/player", ensureAuthenticated, playerRoutes);
 app.use("/course", ensureAuthenticated, courseRoutes);
+app.use("/attendance", ensureAuthenticated, attendanceRoutes);
 
 // Start server only if run directly (not required as a module)
 if (require.main === module) {
