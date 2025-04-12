@@ -80,7 +80,7 @@ router.get(
  *               courseCode: { type: string }
  *               title: { type: string }
  *               department: { type: string }
- *               schedule: { type: number }
+ *               schedule: { type: string }
  *               room: { type: string }
  *               credits: { type: number }
  *     responses:
