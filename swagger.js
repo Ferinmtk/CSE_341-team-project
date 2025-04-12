@@ -37,7 +37,8 @@ const options = {
     "./routes/instructorRoutes.js",
     "./routes/libraryRoutes.js",
     "./routes/playerRoutes.js",
-    "./routes/courseRoutes.js"
+    "./routes/courseRoutes.js",
+    "./routes/attendanceRoutes.js"
   ],
 };
 
