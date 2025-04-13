@@ -44,6 +44,15 @@ app.use("/player", ensureAuthenticated, playerRoutes);
 app.use("/course", ensureAuthenticated, courseRoutes);
 app.use("/attendance", ensureAuthenticated, attendanceRoutes);
 
+// app.use("/", routes);
+// app.use("/auth", authRoutes);
+// app.use("/student", studentRoutes);
+// app.use("/instructor", instructorRoutes);
+// app.use("/library", libraryRoutes);
+// app.use("/player", playerRoutes);
+// app.use("/course", courseRoutes);
+// app.use("/attendance", attendanceRoutes);
+
 // Start server only if run directly (not required as a module)
 if (require.main === module) {
   connectDB()
