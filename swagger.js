@@ -14,9 +14,6 @@ const options = {
       {
         url: "http://localhost:3000", // Local server URL
       },
-      {
-        url: "https://group9-cse341-project.onrender.com", // Production server URL
-      },
     ],
     components: {
       securitySchemes: {
@@ -38,7 +35,7 @@ const options = {
     "./routes/libraryRoutes.js",
     "./routes/playerRoutes.js",
     "./routes/courseRoutes.js",
-    "./routes/attendanceRoutes.js"
+    "./routes/attendanceRoutes.js",
   ],
 };
 
