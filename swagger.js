@@ -14,6 +14,9 @@ const options = {
       {
         url: "http://localhost:3000", // Local server URL
       },
+      {
+        url: "https://cse-341-team-project-v6bb.onrender.com", // Production server URL
+      },
     ],
     components: {
       securitySchemes: {
